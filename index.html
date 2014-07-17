@@ -16,11 +16,56 @@
     </head>
     <body>
 
-    	<p>TEST</p>
+    	<section class="timer">
 
-    	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    	<script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.12.1/TweenLite.min.js"></script>
+    	<div class="hours time-wrapper">
+    			<span class="tens top"></span>
+    			<span class="tens bottom"></span>
+    			<span class="units top"></span>
+    			<span class="units bottom"></span>
+    		</div>
+
+    		<div class="divider time-wrapper">
+    			<span>:</span>
+    		</div>
+
+    		<div class="minutes time-wrapper">
+    			<span class="tens top"></span>
+    			<span class="tens bottom"></span>
+    			<span class="units top"></span>
+    			<span class="units bottom"></span>
+    		</div>
+
+    		<div class="divider time-wrapper">
+    			<span>:</span>
+    		</div>
+
+    		<div class="seconds time-wrapper">
+    			<span class="tens top"></span>
+    			<span class="tens bottom"></span>
+    			<span class="units top"></span>
+    			<span class="units bottom"></span>
+    		</div>
+
+    		<div class="divider time-wrapper">
+    			<span>:</span>
+    		</div>
+
+    		<div class="miliseconds time-wrapper">
+    			<span class="miliseconds">00</span>
+    		</div>
+    	</section>
+
+
+    	<section class="timer-controls">
+    		<div class="start-stop">Start</div>
+    	</section>
+
+
+     	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    	<script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"></script>
     	<script src="libs/dist/js/modernizr-2.6.2.min.js"></script>
+    	<script src="libs/dist/js/flowtype.js"></script>
     	<script src="libs/dist/js/main.min.js"></script>
     </body>
 </html>

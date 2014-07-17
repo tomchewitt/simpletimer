@@ -1,5 +1,5 @@
-/* 
-
+/*! 
+* Simple Timer
 */
 
 @import "compass/reset";
@@ -9,7 +9,6 @@ $color1: #999;
 $black: #000;
 $white: #FFF;
 
-$navheight: 4rem;
 
 // MIXINS
 @mixin vendor-prefix($name, $argument...) {
@@ -70,32 +69,83 @@ $navheight: 4rem;
 	color: $white;
 }
 
-// FONTS ----------------------------------------------------------------
-@font-face {
-	@include fontface( titilliumtext, titilliumtext22l001 );
-}
-
 
 // PARENT ELEMENTS ------------------------------------------------------
 body {
 	overflow: hidden;
-	background: #CCC;
+	background: $color1;
+	font-family: 'Inconsolata', helvetica, arial, sans-serif;
+	font-weight: 400;
+	font-size: 18px;
 }
 
-header {
+.timer {
 	width: 100%;
-	height: 75px;
-	background: $color1
+	margin-top: 300px;
+	display: block;
+	font-size: 6em;
+
+	$unitWidth: 8%;
+	$unitHeight: 300px;
+
+	.time-wrapper {
+		width: $unitWidth * 2;
+		height: $unitHeight;
+		display: block;
+		position: relative;
+		float: left;
+
+		span {
+			width: 50%;
+			height: $unitHeight;
+			display: block;
+			background: $white;
+			float: left;
+		}
+
+		.top, .bottom {
+			position: absolute;
+			top:0;
+		}
+
+		.top {
+			top: -$unitHeight;
+			opacity: 0;
+		}
+
+		.tens {
+			left: 0;
+		}
+
+		.units {
+			left: 50%;
+		}
+	}
+
+	.divider {
+		width: $unitWidth;
+		height: $unitHeight;
+		display: block;
+	}
+
+	.miliseconds span {
+		width: 100%;
+	}
 }
 
+.timer-controls {
+	width: 100%;
+	display: block;
+	background: #666;
+	padding: 50px;
+	clear: both;
+}
 
 
 // BROWSER SPECIFIC -----------------------------------------------------
 
 body.touch {
-	.home {
-		//@include vendor-prefix( background-size, cover );
-	}
+	
 }
 
 
