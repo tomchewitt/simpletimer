@@ -1,0 +1,27 @@
+@import "_utils.scss";
+@import "compass/reset";
+
+body {
+	font-family: $font-stack;
+	font-weight: 400;
+	background: green;
+}
+
+body {
+ font-size: 18px;
+ text-align: center;
+}
+
+section {
+	width: 100%;
+}
+
+input {
+	font-size: 5em;
+	line-height: 1.45;
+	text-align: center;
+	width: 18%;
+	background: none;
+	border: none;
+}
+

@@ -1,103 +1,100 @@
 module.exports = function(grunt) {
 
-  grunt.initConfig({
+	// LOAD TASKS FROM PACKAGE MANEFEST
+	require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
 
-    // Import package manifest
-    pkg: grunt.file.readJSON('package.json'),
+	// GRUNT CONFIG
+	grunt.initConfig({
 
-    // Banner definitions
-    meta: {
-      banner: '/*\n' +
-        ' *  <%= pkg.title || pkg.name %> - v<%= pkg.version %>\n' +
-        ' *  <%= pkg.description %>\n' +
-        ' *\n' +
-        ' *  Made by <%= pkg.author.name %>\n' +
-        ' *  Under <%= pkg.license %> License\n' +
-        ' */\n'
-    },
+		// IMPORT MANIFEST
+		pkg: grunt.file.readJSON('package.json'),
 
-    // Concat definitions
-    concat: {
-      dist: {
-        src: ['libs/src/js/*.js'],
-        dest: 'libs/dist/js/main.js'
-      },
-      options: {
-        banner: '<%= meta.banner %>'
-      }
-    },
+	    // CONCAT
+		concat: {
+			dist: {
+				src: [
+					'libs/src/js/vendor/jquery/jQuery.2.1.1.min.js',
+					//'libs/src/js/vendor/gsap/TweenMax.1.13.2.min.js',
+					'libs/src/js/vendor/flowtype/flowtype.js',
+					'libs/src/js/script/init.js'],
+				dest: 'libs/src/js/bundle.js'
+			}
+		},
 
-    // Lint definitions
-    jshint: {
-      src: ['libs/src/js/*.js'],
-      options: {
-        jshintrc: '.jshintrc'
-      }
-    },
+		// MINIFY
+		uglify: {
+			options: {
+				compress: {
+			    	drop_console: true
+			    }
+			},
+			target: {
+				src: ['libs/src/js/bundle.js'],
+				dest: 'libs/dist/js/bundle.min.js'
+			}
+		},
 
-    // Minify definitions
-    uglify: {
-      my_target: {
-        src: ['libs/dist/js/main.js'],
-        dest: 'libs/dist/js/main.min.js'
-      },
-      options: {
-        banner: '<%= meta.banner %>'
-      }
-    },
+		// COMPASS
+		compass: {
+			dist: {
+				options: {
+					sassDir: 'libs/src/scss/',
+					cssDir: 'libs/src/css/',
+					environment: 'production',
+					outputStyle: 'compressed'
+				}
+			}
+		},
 
-    sass: {
-      options: {
-        style: 'compressed',
-        banner: '<%= meta.banner %>'
-      },
-      dist: {
-        files: {
-          'libs/dist/css/screen.css' : 'libs/src/scss/screen.scss'
-        }
-      }
-    },
+		// AUTOPREFIX
+		autoprefixer: {
+			options: {
+				formatting : {
+					indent_size : 4
+				}
+			},
+			files: {
+				src: 'libs/src/css/bundle-noprefix.css',
+				dest: 'libs/dist/css/bundle.css'
+			}
+		},
 
-    watch: {
-      css: {
-        files: 'libs/src/**/*.scss',
-        tasks: ['sass']
-      }
-    },
+		// WATCH
+		watch: {
+			all: {
+				files: 'index.html',
+				options: {
+					livereload: true
+				}
+			},
+			scripts: {
+				files: 'libs/src/js/script/*.js',
+				tasks: ['concat', 'uglify'],
+				options: {
+					livereload: true
+				}
+			},
+			scss: {
+				files: 'libs/src/scss/*.scss',
+				tasks: ['compass'],
+				options: {
+					livereload: true
+				}
+			},
+			css: {
+				files: 'libs/src/css/bundle-noprefix.css',
+				tasks: ['autoprefixer'],
+				options: {
+					livereload: true
+				}
+			},
+		}
+	});
 
-    compass: {
-      dist: {                   // Target
-        options: {              // Target options
-          sassDir: 'libs/src/scss',
-          cssDir: 'libs/dist/css',
-          environment: 'production',
-          outputStyle: 'compressed'
-          //config: 'config.rb'
-        }
-      }
-    }
+	// CREATE TASK 'default'
+	grunt.registerTask('default', ['concat', 'uglify', 'compass', 'autoprefixer']);
 
-    // jasmine: {
-    //   src: 'src/list-selection.jquery.js',
-    //   options: {
-    //     specs: 'spec/*Spec.js',
-    //     helpers: [
-    //       'lib/jquery-1.10.2.js',
-    //       'lib/jasmine-jquery-1.5.8.js',
-    //       'spec/*Helper.js'
-    //     ],
-    //   }
-    // }
-
-  });
-
-  grunt.loadNpmTasks('grunt-contrib-concat');
-  grunt.loadNpmTasks('grunt-contrib-jshint');
-  grunt.loadNpmTasks('grunt-contrib-uglify');
-  grunt.loadNpmTasks('grunt-contrib-watch');
-  grunt.loadNpmTasks('grunt-contrib-sass');
-  grunt.loadNpmTasks('grunt-contrib-compass');
-  // grunt.loadNpmTasks('grunt-contrib-jasmine');
-
-  grunt.registerTask('default', ['concat', 'uglify', 'compass']);
 };
+
+
+

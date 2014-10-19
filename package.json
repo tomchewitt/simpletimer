@@ -1,28 +1,28 @@
 {
-  "name": "simpletimer",
+  "name": "folio",
+  "author": "Tom Hewitt",
+  "license": "BSD-2-Clause",
   "version": "0.1.0",
-  "description": "Simple Timer / Stopclock | An @tomchewitt Experiment",
+  "description": "tomchewitt offline folio",
   "devDependencies": {
     "grunt": "^0.4.5",
-    "grunt-cli": "~0.1.9",
-    "grunt-contrib-concat": "^0.3.0",
-    "grunt-contrib-jasmine": "~0.5.1",
-    "grunt-contrib-jshint": "^0.8.0",
-    "grunt-contrib-uglify": "^0.4.0",
-    "grunt-contrib-sass": "^0.7.3",
-    "grunt-contrib-watch": "^0.5.3",
-    "grunt-contrib-compass": "^0.9.0"
+    "matchdep": "^0.3.0",
+    "grunt-contrib-concat": "^0.4.0",
+    "grunt-contrib-uglify": "^0.5.0",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-contrib-compass": "^0.9.0",
+    "grunt-express": "^1.4.1",
+    "grunt-open": "^0.2.3",
+    "grunt-autoprefixer": "^1.0.1"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/tomchewitt/simpletimer.git"
+    "url": "git://github.com/tomchewitt/folio.git"
   },
-  "author": "Tom Hewitt",
-  "license": "BSD-2-Clause",
   "bugs": {
-    "url": "https://github.com/tomchewitt/simpletimer/issues"
+    "url": "https://github.com/tomchewitt/folio/issues"
   }
 }
