@@ -17,11 +17,14 @@ section {
 }
 
 input {
+	font-family: $font-stack;
 	font-size: 5em;
 	line-height: 1.45;
 	text-align: center;
-	width: 18%;
+	width: 16%;
+	margin: 0;
+	padding: 0;
 	background: none;
-	border: none;
+	// border: none;
 }
 
