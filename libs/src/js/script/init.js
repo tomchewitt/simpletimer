@@ -32,7 +32,6 @@ Timer = (function($) {
 		}    
 	    	
 	    updateTimer();
-
 	}
 
 	function updateTimer() {
