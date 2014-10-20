@@ -1,66 +1,74 @@
 // *****************************************************************
 // TIMER MODULE
 // *****************************************************************
-var timer = (function() {
+Timer = (function($) {
 	
 	var counting;
+	var hours = 0;
+	var minutes = 0;
+	var seconds = 0;
+	var miliseconds = 0;
 
 	// constructor
-	var timer = function(elm, options) {
-		elm = elm || {};
-		options = options || {};
+	var Timer = function() {
 
-		// $hours = $('.timer .hours');
-		// $minutes = $('.timer .minutes');
-		// $seconds = $('.timer .seconds');
-		// $miliseconds = $('.timer .miliseconds');
 	}
 
 	// private
 
 	function update() {
-		if ($('.timer .miliseconds').val() == 99) {
-			$('.timer .miliseconds').val('00');
+		miliseconds++;
+		if (miliseconds >= 100) {
+			miliseconds = 0;
+			seconds++;
+		    if (seconds >= 60) {
+		        seconds = 0;
+		        minutes++;
+		        if (minutes >= 60) {
+		            minutes = 0;
+		            hours++;
+		        }
+		    }
+		}    
+	    	
+	    updateTimer();
 
-			if ($('.timer .seconds').val() == 59) {
-				$('.timer .seconds').val('00');
+	}
 
-				if ($('.timer .minutes').val() == 59) {
-					$('.timer .minutes').val('00');
-
-					$('.timer .hours').val($('.timer .hours').val() + 1);
-
-				} else {
-					$('.timer .minutes').val($('.timer .minutes').val() + 1);
-				}
-			} else {
-				$('.timer .seconds').val($('.timer .seconds').val() + 1);
-			}
-		} else {
-			$('.timer .miliseconds').val(parseInt($('.timer .miliseconds').val() + 1));
-		}
+	function updateTimer() {
+		$('.timer span').text((hours ? (hours > 9 ? hours : '0' + hours) : '00') + ':' + 
+	    	(minutes ? (minutes > 9 ? minutes : '0' + minutes) : '00') + ':' + 
+	    	(seconds ? (seconds > 9 ? seconds : '0' + seconds) : '00') + ':' +
+	    	(miliseconds > 9 ? miliseconds : '0' + miliseconds));
 	}
 
 	// public
-	timer.start = function() {
+	Timer.start = function() {
 		counting = setInterval(function(){update()}, 10);
 	}
 
-	timer.stop = function() {
-
+	Timer.stop = function() {
+		clearInterval(counting);
 	}
 
-	timer.reset = function() {
+	Timer.reset = function() {
+		hours = 0;
+		minutes = 0;
+		seconds = 0;
+		miliseconds = 0;
 
+		updateTimer();
 	}
 
-	timer.lap = function() {
-
+	Timer.lap = function() {
+		var laptime = $('.timer span').text();
+		var lapint = $('.laps div').length + 1;
+		$('.laps').append('<div class="laptime">' + lapint + ' | ' + laptime + '</div>');
 	}
 
-	return timer;
+	return Timer;
 
-});
+})(jQuery);
 
 
 // *****************************************************************
@@ -71,11 +79,30 @@ $(document).ready(function() {
 	// setup flowtype	
 	$('.timer').flowtype();
 
-	// setup timer
-	var simpletimer = new timer($('.timer'), {controls: $('.timer-controls')});
+	// start/stop timer
+	$('.timer-controls .startstop').click(function() {
+		if ($(this).hasClass('started')) {
+			Timer.stop();
+			$(this).removeClass('started');
+		} else {
+			Timer.start();
+			$(this).addClass('started');
+		}
+	});
 
-	// start timer
-	// simpletimer.start();
+	// reset
+	$('.timer-controls .reset').click(function() {
+		Timer.reset();
+	});
+	
+	// lap
+	$('.timer-controls .lap').click(function() {
+		Timer.lap();
+	});
 
+	// clear
+	$('.timer-controls .clear').click(function() {
+		$('.laps').html('');
+	});
 });
 

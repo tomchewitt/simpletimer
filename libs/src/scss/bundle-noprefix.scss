@@ -16,15 +16,18 @@ section {
 	width: 100%;
 }
 
-input {
+.timer span {
 	font-family: $font-stack;
 	font-size: 5em;
 	line-height: 1.45;
 	text-align: center;
-	width: 16%;
-	margin: 0;
-	padding: 0;
-	background: none;
-	// border: none;
 }
 
+.timer-controls {
+	li {
+		padding: 5px;
+		background: black;
+		color: white;
+		cursor: pointer;
+	}
+}
