@@ -115,7 +115,7 @@ Timer = (function($) {
 	Timer.lap = function() {
 		var laptime = $('.timer span').text();
 		var lapint = $('.laps div').length + 1;
-		$('.laps').append('<div class="laptime">' + lapint + ' | ' + laptime + '</div>');
+		$('.laps').append('<div class="laptime"><span>' + lapint + '</span><span>' + laptime + '</span></div>');
 	}
 
 	return Timer;
@@ -156,5 +156,6 @@ $(document).ready(function() {
 	$('.timer-controls .clear').click(function() {
 		$('.laps').html('');
 	});
+
 });
 

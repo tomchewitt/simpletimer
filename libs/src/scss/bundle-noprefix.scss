@@ -112,11 +112,66 @@ section.header {
 	}
 }
 
-
 // *****************************************************************
 // LAPS
 // *****************************************************************
 .laps {
 	background: $darkblue;
-	// height: 100px;
+	color: white;
+	padding: 50px 0;
+}
+
+
+.laptime {
+	margin: 0 atuo;
+	display: block;
+	padding: 3px 0;
+	// position: relative;
+
+	// &:nth-child(1) {
+	// 	&::before {
+	// 		content: 'LAPS';
+	// 		font-size: 0.8em;
+	// 		letter-spacing: -1px;
+	// 		width: 100%;
+	// 		position: absolute;
+	// 		top: -30px;
+	// 		left: 0;
+	// 		margin: 0 auto;
+	// 	}
+	// }
+
+	span {
+		height: 60px;
+		display: inline-block;
+		font-size: 32px;
+		line-height: 60px;
+		padding: 0 40px;
+		margin: 0 3px;
+		background: $lightblue;
+	}
+}
+
+
+// *****************************************************************
+// MEDIA QUERIES
+// *****************************************************************
+@media screen and (max-device-width: 768px) and (orientation: portrait) {
+	.timer-controls {
+		padding-bottom: 40px;
+		li {
+			width: 19%;
+			margin: 0;
+
+			&::before {
+				display: none;
+			}
+		}
+	}
+
+	.laptime {
+		span {
+			padding: 0 10px;
+		}
+	}
 }
