@@ -1,8 +1,5 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<html>
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,9 +7,7 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href='http://fonts.googleapis.com/css?family=Droid+Sans+Mono' rel='stylesheet' type='text/css'>
-        <!-- <link href='http://fonts.googleapis.com/css?family=Inconsolata' rel='stylesheet' type='text/css'> -->
         <link rel="stylesheet" href="libs/dist/css/bundle.css">
-        <script src="libs/src/js/vendor/modernizr/modernizr-2.8.3.min.js"></script>
         
     </head>
     <body>
@@ -50,14 +45,22 @@
             </footer>
         </section>
 
-        <!-- LIVERELOAD -->
+        <!-- LIVERELOAD
         <script src="//localhost:35729/livereload.js"></script>
+        -->
 
         <!-- SCRIPTS -->
-    	<!-- <script src="libs/dist/js/bundle.min.js"></script> -->
-        <script src="libs/src/js/bundle.js"></script>
+    	<script src="libs/dist/js/bundle.min.js"></script>
 
         <!-- ANALYTICS -->
+        <script>
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+            ga('create', 'UA-16424514-4', 'auto');
+            ga('send', 'pageview');
+        </script>
         
     </body>
 </html>
